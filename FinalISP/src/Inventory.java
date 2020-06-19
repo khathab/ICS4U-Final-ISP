@@ -27,6 +27,7 @@ public class Inventory {
 	public void removeItem(Item item) throws IOException{
 		inventory.remove(item);
 		if(raf!=null) {
+			emptyBinFile();
 			writeBinFile();
 		}
 	}
@@ -35,7 +36,7 @@ public class Inventory {
 	public void removeItem(int item) throws IOException{
 		inventory.remove(item);
 		if(raf!=null) {
-			
+			emptyBinFile();
 			writeBinFile();
 		}
 	}
