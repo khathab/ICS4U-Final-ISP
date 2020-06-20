@@ -26,8 +26,8 @@ public class Order {
 		this.total = total;
 	}
 			
-	public void addItem(BufferedImage image,String name,double quantity,double price) throws IOException {
-		inventory.add(new Product(image,name,quantity,price));
+	public void addItem(BufferedImage image,String name,double quantity,double price,String location) throws IOException {
+		inventory.add(new Product(image,name,quantity,price, location));
 		if(raf!=null) {
 			writeBinFile(inventory.size()-1);
 		}
@@ -88,7 +88,12 @@ public class Order {
 		}
 	}	
 	
-	public void printOrder() {
+	public void deleteAll() throws IOException {
+	inventory.clear();
+	emptyBinFile();
+	}
+	
+	public void printList() {
 		System.out.println("Name: " + name);
 		System.out.println("Address: "+ address);
 		System.out.println("Total: "+total);
@@ -96,7 +101,7 @@ public class Order {
 		
 		for(int x = 0 ; inventory.size()>x ; x++) {
 			System.out.println("Product #"+(x+1));
-			inventory.get(x).printProduct();
+			inventory.get(x).printData();
 		}
 	}
 	public void setName(String name) {
@@ -123,6 +128,13 @@ public class Order {
 		return total;
 	}
 	
+	public void setRaf(RandomAccessFile raf) {
+		this.raf = raf;
+	}
+	
+	public RandomAccessFile getRaf() {
+		return raf;
+	}
 	
 	
 }

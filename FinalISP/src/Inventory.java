@@ -13,8 +13,11 @@ public class Inventory {
 		
 	}
 	
-	public void addItem(BufferedImage image,String name,double quantity,double price,double lowCap,String quantityType,String location) {
+	public void addItem(BufferedImage image,String name,double quantity,double price,double lowCap,String quantityType,String location) throws IOException {
 		inventory.add(new Item(image,name,quantity,price,lowCap,quantityType,location));
+		if(raf!=null) {
+			writeBinFile(inventory.size()-1);
+		}
 	}
 	
 	public void addItem() throws IOException {
@@ -67,18 +70,31 @@ public class Inventory {
 	
 	public void readBinFile(RandomAccessFile raf)throws IOException{
 		this.raf = raf;
-		for(int x =inventory.size(); raf.length()/96>x ; x++) {
+		for(int x =inventory.size(); raf.length()/144>x ; x++) {
 			inventory.add(new Item());
 			inventory.getLast().readBinFile(raf, x);
 		}
 	}	
 	
-	public void printOrder() {
+	public void deleteAll() throws IOException {
+		inventory.clear();
+		emptyBinFile();
+		}
+	
+	public void printList() {
 
 		for(int x = 0 ; inventory.size()>x ; x++) {
 			System.out.println("Item #"+(x+1));
-			inventory.get(x).printProduct();
+			inventory.get(x).printData();
 		}
+	}
+	
+	public void setRaf(RandomAccessFile raf) {
+		this.raf = raf;
+	}
+	
+	public RandomAccessFile getRaf() {
+		return raf;
 	}
 	
 }

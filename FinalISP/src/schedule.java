@@ -1,6 +1,16 @@
 
 
 public class schedule {
+	
+	
+	String mondayWork;
+	String tuesdayWork;
+	String wednesdayWork;
+	String thursdayWork;
+	String fridayWork;
+	String saturdayWork;
+	String sundayWork;
+	
 	public String getMondayWork() {
 		return mondayWork;
 	}
@@ -43,12 +53,6 @@ public class schedule {
 	public void setSundayWork(String sundayWork) {
 		this.sundayWork = sundayWork;
 	}
-	String mondayWork;
-	String tuesdayWork;
-	String wednesdayWork;
-	String thursdayWork;
-	String fridayWork;
-	String saturdayWork;
-	String sundayWork;
+	
 	
 }

@@ -1,98 +1,222 @@
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.util.LinkedList;
+
+import javax.imageio.ImageIO;
 
 public class Employee {
 	
+
+
+	private BufferedImage image;
+	private String name;
+	private double pay;
+	private double payForTheWeek;
+	private Object schedule;
+	private double overtimeHours;
+	private String employeeType;
+	private double hoursWorked;
+	private double overtimePay;
+	private String location;
+	private int length = 160;
+	private int maxStringLength = 20;
+	 
 	
-	public LinkedList<Employee> inventory = new LinkedList<Employee>();;
-	
-public void employeeList() {
+	public Employee() {
 		
 	}
-public void addItem(String name, double pay, double payForTheWeek, Object schedule, double overtimeHours,String employeeType,double hoursWorked ) {
-	inventory.add(new Employee(name,pay,payForTheWeek,schedule,overtimeHours,employeeType,hoursWorked));
-}
-
-
-	String name;
-	   double pay;
-	   double payForTheWeek;
-	  
-	Object schedule;
-	 double overtimeHours;
-	 String employeeType;
-	 double hoursWorked;
-	 double overtimePay;
-	public Employee(double pay,String name,Object schedule,double overtimeHours,String employeeType,double hoursWorked,double payForTheWeek,double overtimePay) {
-		 this.pay=pay;
+	
+	public Employee(BufferedImage image, String name,double pay,double overtimeHours,String employeeType,double hoursWorked,double payForTheWeek,double overtimePay,String location) {
+		 	this.image = image;
 			this.name	= name;
-			this.schedule=schedule;
+			this.pay=pay;
+			//this.schedule=schedule;
 			this.overtimeHours=overtimeHours;
 			this.employeeType=employeeType;
 			this.hoursWorked=hoursWorked;
 			this.payForTheWeek=payForTheWeek;
 			this.overtimePay=overtimePay;
+			this.location = location;
 	 }
-	 public double getOvertimePay() {
+	
+	
+	
+	public void printData() {
+		
+		System.out.println("Name: " + name);
+		System.out.println("Position: " + employeeType);
+		System.out.println("Pay: "+ pay);
+		System.out.println("Hours: "+hoursWorked);
+		System.out.println("PayForTheWeek: "+payForTheWeek);
+		System.out.println("Overtime Pay: "+overtimePay);
+		System.out.println("Overtime Hours: "+overtimeHours);
+		System.out.println("Image location: "+location);
+		
+		System.out.println();
+		
+	}
+	
+	public void readBinFile(RandomAccessFile raf, int rec)throws IOException{
+		raf.seek (rec * length);      
+		String temp = "";
+		        
+		for (int i = 0 ; i < maxStringLength ; i++) { temp = temp + raf.readChar();}
+		        name =  temp.trim();
+		        temp = "";
+		        
+		for (int i = 0 ; i < maxStringLength ; i++) { temp = temp + raf.readChar(); }
+			employeeType = temp.trim();
+		        temp = "";
+		        
+		for (int i = 0 ; i < maxStringLength ; i++) { temp = temp + raf.readChar(); }
+			location = temp.trim();
+			     temp = "";		        
+
+		    
+		
+		pay = raf.readDouble();        
+		payForTheWeek = raf.readDouble();
+		overtimeHours = raf.readDouble();
+		hoursWorked = raf.readDouble();
+		overtimePay = raf.readDouble();
+		
+		
+	}
+	
+	public void writeBinFile(RandomAccessFile raf, int rec)throws IOException{
+		raf.seek (rec * length);
+		
+		 int nameLen = name.length (); 
+		int padLen = 0;	
+		
+		 // pads record fields
+			if (nameLen > maxStringLength)					
+		        nameLen = maxStringLength;
+		    else
+		        padLen = maxStringLength - nameLen;
+		    for (int i = 0 ; i < nameLen ; i++)	
+		        raf.writeChar (name.charAt (i));
+		    if (padLen > 0)	{					
+		        for (int i = 0 ; i < padLen ; i++)
+		            raf.writeChar (' ');
+		    }
+		 // pads record fields 
+		    nameLen = employeeType.length ();
+			padLen = 0;						
+		    if (nameLen > maxStringLength)					
+		        nameLen = maxStringLength;
+		    else
+		        padLen = maxStringLength - nameLen;
+		    for (int i = 0 ; i < nameLen ; i++)	
+		        raf.writeChar (employeeType.charAt (i));
+		    if (padLen > 0)	{				
+		        for (int i = 0 ; i < padLen ; i++)
+		            raf.writeChar (' ');
+		    }        
+		
+		    nameLen = location.length ();
+			padLen = 0;						
+		    if (nameLen > maxStringLength)					
+		        nameLen = maxStringLength;
+		    else
+		        padLen = maxStringLength - nameLen;
+		    for (int i = 0 ; i < nameLen ; i++)	
+		        raf.writeChar (location.charAt (i));
+		    if (padLen > 0)	{				
+		        for (int i = 0 ; i < padLen ; i++)
+		            raf.writeChar (' ');
+		    }   
+		    
+		    // writes rest of field to binary file
+		       	raf.writeDouble (pay);
+		        raf.writeDouble (payForTheWeek);
+		    	raf.writeDouble (overtimeHours);
+		        raf.writeDouble (hoursWorked);
+		    	raf.writeDouble (overtimePay);
+
+		
+	}
+	
+	public  double calculatePay(){
+		double earnings =0; 
+		earnings = hoursWorked*pay;
+				
+		return earnings;	
+	}
+	
+	public  double overtimePay() {
+		double pay =0; 
+		pay = overtimeHours*overtimePay;
+		return pay;
+	}
+	
+	public BufferedImage getImage() {
+		return this.image;
+	}
+
+	
+	public void setImage(BufferedImage image) {
+		this.image = image;
+	}
+	
+	public void setImage() {
+		try {
+			image = ImageIO.read(new File(location));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public double getOvertimePay() {
 		return overtimePay;
 	}
 	public void setOvertimePay(double overtimePay) {
 		this.overtimePay = overtimePay;
 	}
-	public Employee() {
-			pay = 0;
-		    name = "";
-		    schedule = "";
-		    overtimeHours= 0;
-		    employeeType = "";
-		    hoursWorked = 0;
-		    payForTheWeek=0;
-		   overtimePay=0;
-		}
-	 public Employee(String name2, double pay2, double payForTheWeek2, Object schedule2, double overtimeHours2,
-			String employeeType2, double hoursWorked2) {
-		// TODO Auto-generated constructor stub
-	}
+	
 	public double getPayForTheWeek() {
 			return payForTheWeek;
-		}
-		public void setPayForTheWeek(double payForTheWeek) {
+	}
+	public void setPayForTheWeek(double payForTheWeek) {
 			this.payForTheWeek = payForTheWeek;
-		}
-	 public double getHoursWorked() {
+	}
+	public double getHoursWorked() {
 		return hoursWorked;
 	}
 	public void setHoursWorked(double hoursWorked) {
 		this.hoursWorked = hoursWorked;
 	}
-	   public String getName() {
+	public String getName() {
 				return name;
 			}
-			public void setName(String name) {
+	public void setName(String name) {
 				this.name = name;
-			}
-			public double getPay() {
+	}
+	public double getPay() {
 				return pay;
-			}
-			public void setPay(double pay) {
+	}
+	public void setPay(double pay) {
 				this.pay = pay;
-			}
-			public Object getSchedule() {
+	}
+	public Object getSchedule() {
 				return schedule;
-			}
-			public void setSchedule(Object schedule) {
+	}
+	public void setSchedule(Object schedule) {
 				this.schedule = schedule;
-			}
-			public double getOvertimeHours() {
+	}
+	public double getOvertimeHours() {
 				return overtimeHours;
-			}
-			public void setOvertimeHours(double overtimeHours) {
+	}
+	public void setOvertimeHours(double overtimeHours) {
 				this.overtimeHours = overtimeHours;
-			}
-			public String getEmployeeType() {
+	}
+	public String getEmployeeType() {
 				return employeeType;
-			}
-			public void setEmployeeType(String employeeType) {
+	}
+	public void setEmployeeType(String employeeType) {
 				this.employeeType = employeeType;
-			}
+	}
 			
 }

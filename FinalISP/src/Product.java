@@ -11,7 +11,7 @@ public class Product {
 
 	private BufferedImage image;
 	private String name;
-	private String location = "";
+	private String location ;
 	private double quantity;
 	private double price;
 	private int length = 96;
@@ -20,11 +20,12 @@ public class Product {
 		
 	}
 	
-	public Product(BufferedImage image,String name,double quantity,double price) {
+	public Product(BufferedImage image,String name,double quantity,double price, String location) {
 		this.image = image;
 		this.name = name;
 		this.quantity = quantity;
 		this.price = price;
+		this.location = location;
 	}
 	
 	public BufferedImage getImage() {
@@ -78,7 +79,7 @@ public class Product {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public void printProduct() {
+	public void printData() {
 	
 		System.out.println("Name: " + name);
 		System.out.println("Quantity: "+ quantity);

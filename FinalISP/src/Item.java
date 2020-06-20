@@ -9,7 +9,7 @@ public class Item {
 
 	private BufferedImage image;
 	private String name;
-	private String location = "";
+	private String location ;
 	private String quantityType;
 	private double quantity;
 	private double price;
@@ -102,7 +102,7 @@ public class Item {
 		this.quantityType = quantityType;
 	}
 	
-	public void printProduct() {
+	public void printData() {
 		
 		System.out.println("Name: " + name);
 		System.out.println("Location: "+location);
@@ -168,7 +168,8 @@ public class Item {
 		    }    
 		    
 		    nameLen = quantityType.length ();
-			padLen = 0;						
+			padLen = 0;		
+			
 		    if (nameLen > maxStringLength)					
 		        nameLen = maxStringLength;
 		    else
