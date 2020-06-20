@@ -1,14 +1,13 @@
-
-
+import java.awt.event.WindowAdapter;		//for graphics
+import java.awt.event.WindowEvent;			//for graphics	
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Scanner;
 
 public class Menu {
 
-	boolean running = true;
+	static boolean running = true;
 	
 	static File binOrder = new File("orders");
 	static File binInventory = new File("inventory");
@@ -21,7 +20,7 @@ public class Menu {
 	
 	public static void main(String[] args) throws IOException {
 		
-		init();
+		run();
 	
 		
 //		raf = new RandomAccessFile(binOrder,"rw");
@@ -53,6 +52,8 @@ public class Menu {
 	}
 	
 	public static void init() throws IOException {
+		
+		
 		raf = new RandomAccessFile(binOrder,"rw");
 		orders.readBinFile(raf);
 		orders.printList();
@@ -65,20 +66,30 @@ public class Menu {
 		department.readBinFile(raf);
 		department.printList();
 		
-		
+		HomeScreen framer = new HomeScreen(); // frame for homescreen
+		// sets size of homescreen, centers, makes it unresizable
+		framer.setSize(1300, 700);
+		framer.setResizable(false);
+		framer.setLocationRelativeTo(null);
+		// makes x button work
+		framer.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
 	}
 	
 	
 	
-	private void tick() {
-		
+	private static void tick() {
+			
+	}
+	
+	private static void render(){
 		
 	}
 	
-	private void render(){
-		
-	}
-	public void run() {
+	public static void run() {
 		
 		try {
 			init();
@@ -131,6 +142,7 @@ public class Menu {
 		}
 		return raf;
 	}
+	
 	public static void addToOrder(Scanner s) throws IOException {
 		boolean on = true;
 		String resp = "";
@@ -178,4 +190,5 @@ public class Menu {
 		}
 		
 	}
+	
 }
