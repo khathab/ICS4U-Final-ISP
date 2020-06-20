@@ -39,24 +39,24 @@ public class HomeScreen extends JFrame implements ActionListener {
 		Title.setLayout(new GridLayout());
 	homeIMG.setBackground(Color.red);
 	menubut.setBackground(Color.gray);
-	Title.setIcon(new ImageIcon("./src/img/Title.jpg"));
+	Title.setIcon(new ImageIcon("./Images/screen/Title.jpg"));
 		
 		
 		//stuff for PrtA button
 		PrtA.setContentAreaFilled(false);
-		PrtA.setIcon(new ImageIcon("./src/img/b1.jpg"));
+		PrtA.setIcon(new ImageIcon("./Images/screen/b1.jpg"));
 		menubut.add(PrtA);
 		
 		
 		//stuff for PrtC button
 		PrtC.setContentAreaFilled(false);
-		PrtC.setIcon(new ImageIcon("./src/img/b2.jpg"));
+		PrtC.setIcon(new ImageIcon("./Images/screen/b2.jpg"));
 		menubut.add(PrtC);
 	
 		
 		//stuff for PrtE button
 		PrtE.setContentAreaFilled(false);
-		PrtE.setIcon(new ImageIcon("./src/img/b3.jpg"));
+		PrtE.setIcon(new ImageIcon("./Images/screen/b3.jpg"));
 		menubut.add(PrtE);
 			
 		//stuff for PrtF button
