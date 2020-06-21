@@ -20,11 +20,9 @@ public class Menu {
 	
 	public static void main(String[] args) throws IOException {
 		
-		run();
-	
 		
-//		raf = new RandomAccessFile(binOrder,"rw");
-//
+		
+		run();
 //		orders.setRaf(raf);
 //		orders.addItem(null,"Cake",22,5,"");
 //		orders.addItem(null,"Ice Cream",3,1,"");
@@ -38,12 +36,8 @@ public class Menu {
 //		inventory.addItem(null, "Water", 20, 5, 10, "L", "ds");
 //		inventory.addItem(null, "Butter", 40, 20, 10, "Kg", "ds");
 //		
-//		setRaf(3);
-//		
-//		department.addItem(null, "Khathab", 11.5, 0, "Manager", 0, 100, 14.5, "");
-//		department.addItem(null, "Adnan", 11.5, 0, "Employee", 0, 100, 14.5, "");
-//		department.addItem(null, "Kieran", 11.5, 0, "Manager", 0, 100, 14.5, "");
-//		department.addItem(null, "Brayden", 11.5, 0, "Manager", 0, 100, 14.5, "");
+		
+
 //		
 //		orders.printList();
 //		inventory.printList();
@@ -62,9 +56,11 @@ public class Menu {
 		inventory.readBinFile(raf);
 		inventory.printList();
 		
+		
 		setRaf(3);
 		department.readBinFile(raf);
 		department.printList();
+
 		
 		HomeScreen framer = new HomeScreen(); // frame for homescreen
 		// sets size of homescreen, centers, makes it unresizable
@@ -114,15 +110,15 @@ public class Menu {
 		if(x==1) {
 			binOrder.delete();
 			raf = new RandomAccessFile(binOrder,"rw");
-			
+			orders.setRaf(raf);
 		}else if(x==2) {
 			binInventory.delete();
 			raf = new RandomAccessFile(binInventory,"rw");
-			
+			inventory.setRaf(raf);
 		}else if(x==3) {
 			binDepartment.delete();
 			raf = new RandomAccessFile(binDepartment,"rw");
-			
+			department.setRaf(raf);
 		}
 		return raf;
 	}

@@ -12,8 +12,8 @@ public LinkedList<Employee> inventory = new LinkedList<Employee>();;
 		
 	}
 	
-	public void addItem(BufferedImage image, String name,double pay,double overtimeHours,String employeeType,double hoursWorked,double payForTheWeek,double overtimePay,String location) throws IOException {
-		inventory.add(new Employee(image,name,pay,overtimeHours,employeeType,hoursWorked,payForTheWeek,overtimePay, location));
+	public void addItem(String name,double pay,double overtimeHours,String employeeType,double hoursWorked,double payForTheWeek,double overtimePay,String location) throws IOException {
+		inventory.add(new Employee(name,pay,overtimeHours,employeeType,hoursWorked,payForTheWeek,overtimePay, location));
 		if(raf!=null) {
 			writeBinFile(inventory.size()-1);
 		}
@@ -74,6 +74,7 @@ public LinkedList<Employee> inventory = new LinkedList<Employee>();;
 			inventory.getLast().readBinFile(raf, x);
 		}
 	}	
+	
 	
 	public void deleteAll() throws IOException {
 		inventory.clear();

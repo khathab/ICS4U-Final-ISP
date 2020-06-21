@@ -9,41 +9,28 @@ import javax.imageio.ImageIO;
 
 public class Product {
 
-	private BufferedImage image;
+
 	private String name;
 	private String location ;
 	private double quantity;
 	private double price;
 	private int length = 96;
 	private int maxStringLength = 20;
+	private String imagelocation;
 	public Product() {
 		
 	}
 	
-	public Product(BufferedImage image,String name,double quantity,double price, String location) {
-		this.image = image;
+	public Product(String name,double quantity,double price, String location) {
+
 		this.name = name;
 		this.quantity = quantity;
 		this.price = price;
 		this.location = location;
+		imagelocation = "./Images/products/"+location+".jpg";
 	}
 	
-	public BufferedImage getImage() {
-		return this.image;
-	}
-
 	
-	public void setImage(BufferedImage image) {
-		this.image = image;
-	}
-	
-	public void setImage() {
-		try {
-			image = ImageIO.read(new File(location));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 	
 	public String getName() {
 		return this.name;
@@ -58,7 +45,15 @@ public class Product {
 		return this.location;
 	}
 
+	public String getImageLocation() {
+		return this.imagelocation;
+	}
 
+
+	public void setImageLocation(String imagelocation) {
+		this.imagelocation = imagelocation;
+	}
+	
 	public void setLocation(String location) {
 		this.location = location;
 	}
@@ -103,7 +98,7 @@ public class Product {
 		
 		quantity = raf.readDouble();        
 		price = raf.readDouble();
-		
+		imagelocation = "./Images/products/"+location+".jpg";
 	}
 	
 	public void writeBinFile(RandomAccessFile raf, int rec)throws IOException{

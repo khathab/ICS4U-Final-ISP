@@ -7,13 +7,14 @@ import javax.imageio.ImageIO;
 
 public class Item {
 
-	private BufferedImage image;
+
 	private String name;
 	private String location ;
 	private String quantityType;
 	private double quantity;
 	private double price;
 	private double lowCap;
+	private String imagelocation;
 	
 	private int length = 144;
 	private int maxStringLength = 20;
@@ -21,32 +22,17 @@ public class Item {
 		
 	}
 
-	public Item(BufferedImage image,String name,double quantity,double price,double lowCap,String quantityType,String location) {
+	public Item(String name,double quantity,double price,double lowCap,String quantityType,String location) {
 		
-		this.image = image;
 		this.name = name;
 		this.quantity = quantity;
 		this.price = price;
 		this.lowCap = lowCap;
 		this.quantityType = quantityType;
 		this.location = location;
+		imagelocation = "./Images/items/"+location+".jpg";
 	}
-	public BufferedImage getImage() {
-		return this.image;
-	}
-
 	
-	public void setImage(BufferedImage image) {
-		this.image = image;
-	}
-
-	public void setImage() {
-		try {
-			image = ImageIO.read(new File(location));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 	
 	public String getName() {
 		return this.name;
@@ -102,6 +88,15 @@ public class Item {
 		this.quantityType = quantityType;
 	}
 	
+	public String getImageLocation() {
+		return this.imagelocation;
+	}
+
+
+	public void setImageLocation(String imagelocation) {
+		this.imagelocation = imagelocation;
+	}
+	
 	public void printData() {
 		
 		System.out.println("Name: " + name);
@@ -133,7 +128,7 @@ public class Item {
 		quantity = raf.readDouble();        
 		price = raf.readDouble();
 		lowCap = raf.readDouble();
-		
+		imagelocation = "./Images/items/"+location+".jpg";
 	}
 	
 	public void writeBinFile(RandomAccessFile raf, int rec)throws IOException{

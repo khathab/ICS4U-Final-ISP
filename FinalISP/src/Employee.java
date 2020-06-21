@@ -10,7 +10,7 @@ public class Employee {
 	
 
 
-	private BufferedImage image;
+
 	private String name;
 	private double pay;
 	private double payForTheWeek;
@@ -22,14 +22,14 @@ public class Employee {
 	private String location;
 	private int length = 160;
 	private int maxStringLength = 20;
-	 
+	private String imagelocation;
 	
 	public Employee() {
 		
 	}
 	
-	public Employee(BufferedImage image, String name,double pay,double overtimeHours,String employeeType,double hoursWorked,double payForTheWeek,double overtimePay,String location) {
-		 	this.image = image;
+	public Employee(String name,double pay,double overtimeHours,String employeeType,double hoursWorked,double payForTheWeek,double overtimePay,String location) {
+
 			this.name	= name;
 			this.pay=pay;
 			//this.schedule=schedule;
@@ -39,6 +39,7 @@ public class Employee {
 			this.payForTheWeek=payForTheWeek;
 			this.overtimePay=overtimePay;
 			this.location = location;
+			imagelocation = "./Images/employees/"+location+".jpg";
 	 }
 	
 	
@@ -81,7 +82,7 @@ public class Employee {
 		overtimeHours = raf.readDouble();
 		hoursWorked = raf.readDouble();
 		overtimePay = raf.readDouble();
-		
+		imagelocation = "./Images/employees/"+location+".jpg";
 		
 	}
 	
@@ -152,22 +153,6 @@ public class Employee {
 		return pay;
 	}
 	
-	public BufferedImage getImage() {
-		return this.image;
-	}
-
-	
-	public void setImage(BufferedImage image) {
-		this.image = image;
-	}
-	
-	public void setImage() {
-		try {
-			image = ImageIO.read(new File(location));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 	
 	public double getOvertimePay() {
 		return overtimePay;
@@ -217,6 +202,25 @@ public class Employee {
 	}
 	public void setEmployeeType(String employeeType) {
 				this.employeeType = employeeType;
+	}
+	
+	public String getLocation() {
+		return this.location;
+	}
+
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	
+	
+	public String getImageLocation() {
+		return this.imagelocation;
+	}
+
+
+	public void setImageLocation(String imagelocation) {
+		this.imagelocation = imagelocation;
 	}
 			
 }

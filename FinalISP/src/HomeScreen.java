@@ -31,20 +31,22 @@ public class HomeScreen extends JFrame implements ActionListener {
 		JButton PrtA = new JButton(" MANAGE EMPLOYEES");				//factorial section 
 		JButton PrtC = new JButton(" MANAGE INVENTORY");				//fractal section button
 		JButton PrtE= new JButton(" MANAGE ORDERS");					//fractal section button
+
 		
 		//sets back image for frame
 		setContentPane(homeIMG);
 		//layouts set for different parts of frame
 		homeIMG.setLayout(new BorderLayout());
 		Title.setLayout(new GridLayout());
-	homeIMG.setBackground(Color.red);
-	menubut.setBackground(Color.gray);
-	Title.setIcon(new ImageIcon("./Images/screens/Title.jpg"));
+		homeIMG.setBackground(Color.red);
+		menubut.setBackground(Color.gray);
+		Title.setIcon(new ImageIcon("./Images/screens/b1.jpg"));
 		
+		System.out.println(Menu.department.inventory.get(0).getImageLocation());
 		
 		//stuff for PrtA button
 		PrtA.setContentAreaFilled(false);
-		PrtA.setIcon(new ImageIcon("./Images/screens/b1.jpg"));
+		PrtA.setIcon(new ImageIcon(Menu.department.inventory.get(0).getImageLocation()));
 		menubut.add(PrtA);
 		
 		

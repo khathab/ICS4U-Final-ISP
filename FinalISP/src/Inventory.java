@@ -13,8 +13,8 @@ public class Inventory {
 		
 	}
 	
-	public void addItem(BufferedImage image,String name,double quantity,double price,double lowCap,String quantityType,String location) throws IOException {
-		inventory.add(new Item(image,name,quantity,price,lowCap,quantityType,location));
+	public void addItem(String name,double quantity,double price,double lowCap,String quantityType,String location) throws IOException {
+		inventory.add(new Item(name,quantity,price,lowCap,quantityType,location));
 		if(raf!=null) {
 			writeBinFile(inventory.size()-1);
 		}
@@ -75,6 +75,7 @@ public class Inventory {
 			inventory.getLast().readBinFile(raf, x);
 		}
 	}	
+	
 	
 	public void deleteAll() throws IOException {
 		inventory.clear();

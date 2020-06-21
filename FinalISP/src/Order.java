@@ -26,8 +26,8 @@ public class Order {
 		this.total = total;
 	}
 			
-	public void addItem(BufferedImage image,String name,double quantity,double price,String location) throws IOException {
-		inventory.add(new Product(image,name,quantity,price, location));
+	public void addItem(String name,double quantity,double price,String location) throws IOException {
+		inventory.add(new Product(name,quantity,price, location));
 		if(raf!=null) {
 			writeBinFile(inventory.size()-1);
 		}
@@ -87,6 +87,7 @@ public class Order {
 			inventory.getLast().readBinFile(raf, x);
 		}
 	}	
+	
 	
 	public void deleteAll() throws IOException {
 	inventory.clear();
