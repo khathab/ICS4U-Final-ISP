@@ -6,19 +6,24 @@ import java.util.LinkedList;
 public class Department {
 public LinkedList<Employee> inventory = new LinkedList<Employee>();;
 	
-	private RandomAccessFile raf = null;
+	public RandomAccessFile raf = null;
 
 	public Department() {
 		
 	}
 	
+	public void addItem(String name,double pay,double overtimeHours,String employeeType,double hoursWorked,double payForTheWeek,double overtimePay,String location,schedule schedule) throws IOException {
+		inventory.add(new Employee(name,pay,overtimeHours,employeeType,hoursWorked,payForTheWeek,overtimePay, location,schedule));
+		if(raf!=null) {
+			writeBinFile(inventory.size()-1);
+		}
+	}
 	public void addItem(String name,double pay,double overtimeHours,String employeeType,double hoursWorked,double payForTheWeek,double overtimePay,String location) throws IOException {
 		inventory.add(new Employee(name,pay,overtimeHours,employeeType,hoursWorked,payForTheWeek,overtimePay, location));
 		if(raf!=null) {
 			writeBinFile(inventory.size()-1);
 		}
 	}
-	
 	public void addItem() throws IOException {
 		inventory.add(new Employee());
 		if(raf!=null) {
@@ -48,8 +53,8 @@ public LinkedList<Employee> inventory = new LinkedList<Employee>();;
 		
 	}
 	
-	public void writeBinFile(RandomAccessFile raf)throws IOException{
-		this.raf = raf;
+	public void writeBinFile(RandomAccessFile rafs)throws IOException{
+		raf = rafs;
 		for(int x = 0 ; inventory.size()>x ; x++) {
 			inventory.get(x).writeBinFile(raf, x);
 			
@@ -67,8 +72,8 @@ public LinkedList<Employee> inventory = new LinkedList<Employee>();;
 		inventory.getLast().writeBinFile(raf, x);
 	}
 	
-	public void readBinFile(RandomAccessFile raf)throws IOException{
-		this.raf = raf;
+	public void readBinFile(RandomAccessFile rafs)throws IOException{
+		raf = rafs;
 		for(int x =inventory.size(); raf.length()/160>x ; x++) {
 			inventory.add(new Employee());
 			inventory.getLast().readBinFile(raf, x);

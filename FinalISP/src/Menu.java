@@ -20,10 +20,22 @@ public class Menu {
 	
 	public static void main(String[] args) throws IOException {
 		
+		raf = new RandomAccessFile(binDepartment,"rw");
+		
+//		department.addItem("Khathab", 17.5, 20, "Manager", 100, 0, 23, "Khathab");
+//		department.addItem("Adnan", 11.5, 20, "Worker", 0, 0, 15, "Adnan");
+//		
+//		department.inventory.get(0).getSchedule().addShift(2, 3, 17);
+//		department.inventory.get(0).getSchedule().addShift(4, 6, 15);
+//		
+//		department.inventory.get(0).getSchedule().printData();
+//		department.writeBinFile(raf);
+
+//		run();
 		
 		
-		run();
 //		orders.setRaf(raf);
+//		
 //		orders.addItem("Cake",22,5,"");
 //		orders.addItem("Ice Cream",3,1,"");
 //		orders.addItem("Donuts",10,2,"");
@@ -35,13 +47,10 @@ public class Menu {
 //		inventory.addItem( "Flour", 40, 20, 10, "Kg", "df");
 //		inventory.addItem( "Water", 20, 5, 10, "L", "ds");
 //		inventory.addItem( "Butter", 40, 20, 10, "Kg", "ds");
-//		
 		
-
+//		setRaf(3);
 //		
-//		orders.printList();
-//		inventory.printList();
-//		department.printList();
+
 	
 	}
 	

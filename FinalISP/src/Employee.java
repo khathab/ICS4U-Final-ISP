@@ -1,17 +1,17 @@
 
+import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
 
 public class Employee {
 	
-
-
-
+	private String schedulelocation;
+	private File binSchedule ; 
 	private String name;
 	private double pay;
 	private double payForTheWeek;
-	private Object schedule;
+	private schedule schedule = new schedule();; 
 	private double overtimeHours;
 	private String employeeType;
 	private double hoursWorked;
@@ -20,7 +20,7 @@ public class Employee {
 	private int length = 160;
 	private int maxStringLength = 20;
 	private String imagelocation;
-	
+	private RandomAccessFile raf = null;
 	public Employee() {
 		
 	}
@@ -29,7 +29,6 @@ public class Employee {
 
 			this.name	= name;
 			this.pay=pay;
-			//this.schedule=schedule;
 			this.overtimeHours=overtimeHours;
 			this.employeeType=employeeType;
 			this.hoursWorked=hoursWorked;
@@ -37,7 +36,26 @@ public class Employee {
 			this.overtimePay=overtimePay;
 			this.location = location;
 			imagelocation = "./Images/employees/"+location+".jpg";
+			schedulelocation = "./schedules/"+location;
+			binSchedule = new File(schedulelocation);
+			
 	 }
+	public Employee(String name,double pay,double overtimeHours,String employeeType,double hoursWorked,double payForTheWeek,double overtimePay,String location,schedule schedule) {
+
+		this.name	= name;
+		this.pay=pay;
+		this.schedule=schedule;
+		this.overtimeHours=overtimeHours;
+		this.employeeType=employeeType;
+		this.hoursWorked=hoursWorked;
+		this.payForTheWeek=payForTheWeek;
+		this.overtimePay=overtimePay;
+		this.location = location;
+		imagelocation = "./Images/employees/"+location+".jpg";
+		schedulelocation = "./schedules/"+location;
+		binSchedule = new File(schedulelocation);
+		
+ }
 	
 	
 	
@@ -50,13 +68,16 @@ public class Employee {
 		System.out.println("PayForTheWeek: "+payForTheWeek);
 		System.out.println("Overtime Pay: "+overtimePay);
 		System.out.println("Overtime Hours: "+overtimeHours);
-		System.out.println("Image location: "+location);
-		
+		System.out.println("Image location: "+imagelocation);
+		System.out.println("Schedule location: "+schedulelocation);
+		System.out.println("Schedule: ");
+		schedule.printData();
 		System.out.println();
 		
 	}
 	
-	public void readBinFile(RandomAccessFile raf, int rec)throws IOException{
+	public void readBinFile(RandomAccessFile rafs, int rec)throws IOException{
+		raf = rafs;
 		raf.seek (rec * length);      
 		String temp = "";
 		        
@@ -70,20 +91,30 @@ public class Employee {
 		        
 		for (int i = 0 ; i < maxStringLength ; i++) { temp = temp + raf.readChar(); }
 			location = temp.trim();
-			     temp = "";		        
-
-		    
-		
+			     temp = "";	
+			     
 		pay = raf.readDouble();        
 		payForTheWeek = raf.readDouble();
 		overtimeHours = raf.readDouble();
 		hoursWorked = raf.readDouble();
 		overtimePay = raf.readDouble();
 		imagelocation = "./Images/employees/"+location+".jpg";
+		schedulelocation = "./schedules/"+location;
+		binSchedule = new File(schedulelocation);
 		
+	  	raf.close();
+
+    	raf = new RandomAccessFile(binSchedule,"rw");
+		schedule.readBinFile(raf);
+		raf = Menu.setRaf(3);
+	
 	}
 	
 	public void writeBinFile(RandomAccessFile raf, int rec)throws IOException{
+	
+	//	raf = rafs;
+		
+		
 		raf.seek (rec * length);
 		
 		 int nameLen = name.length (); 
@@ -127,14 +158,20 @@ public class Employee {
 		            raf.writeChar (' ');
 		    }   
 		    
+		    
 		    // writes rest of field to binary file
 		       	raf.writeDouble (pay);
 		        raf.writeDouble (payForTheWeek);
 		    	raf.writeDouble (overtimeHours);
 		        raf.writeDouble (hoursWorked);
 		    	raf.writeDouble (overtimePay);
+		    	
+		    	raf.close();
 
-		
+		    	raf = new RandomAccessFile(binSchedule,"rw");
+				schedule.writeBinFile(raf);
+				raf = Menu.setRaf(3);
+
 	}
 	
 	public  double calculatePay(){
@@ -182,10 +219,10 @@ public class Employee {
 	public void setPay(double pay) {
 				this.pay = pay;
 	}
-	public Object getSchedule() {
+	public schedule getSchedule() {
 				return schedule;
 	}
-	public void setSchedule(Object schedule) {
+	public void setSchedule(schedule schedule) {
 				this.schedule = schedule;
 	}
 	public double getOvertimeHours() {

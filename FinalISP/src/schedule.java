@@ -1,58 +1,76 @@
-
+import java.io.IOException;
+import java.io.RandomAccessFile;
 
 public class schedule {
 	
+	private int[][] workSchedule = new int[7][24]; 
 	
-	String mondayWork;
-	String tuesdayWork;
-	String wednesdayWork;
-	String thursdayWork;
-	String fridayWork;
-	String saturdayWork;
-	String sundayWork;
-	
-	public String getMondayWork() {
-		return mondayWork;
-	}
-	public void setMondayWork(String mondayWork) {
-		this.mondayWork = mondayWork;
-	}
-	public String getTuesdayWork() {
-		return tuesdayWork;
-	}
-	public void setTuesdayWork(String tuesdayWork) {
-		this.tuesdayWork = tuesdayWork;
-	}
-	public String getWednesdayWork() {
-		return wednesdayWork;
-	}
-	public void setWednesdayWork(String wednesdayWork) {
-		this.wednesdayWork = wednesdayWork;
-	}
-	public String getThursdayWork() {
-		return thursdayWork;
-	}
-	public void setThursdayWork(String thursdayWork) {
-		this.thursdayWork = thursdayWork;
-	}
-	public String getFridayWork() {
-		return fridayWork;
-	}
-	public void setFridayWork(String fridayWork) {
-		this.fridayWork = fridayWork;
-	}
-	public String getSaturdayWork() {
-		return saturdayWork;
-	}
-	public void setSaturdayWork(String saturdayWork) {
-		this.saturdayWork = saturdayWork;
-	}
-	public String getSundayWork() {
-		return sundayWork;
-	}
-	public void setSundayWork(String sundayWork) {
-		this.sundayWork = sundayWork;
+	public schedule() {
+		empty();
 	}
 	
+	public void empty() {
+		for(int day = 0;7>day;day++) {
+			for(int hour = 0;24>hour;hour++ ) {
+				workSchedule[day][hour] = 0;
+			}
+		}
+	}
 	
+	public void removeDay(int day) {
+		for(int hour = 0;24>hour;hour++ ) {
+			workSchedule[day][hour] = 0;
+		}
+	}
+	
+	public void addShift(int day, int start, int end) {
+		for(int x = start;end>x;x++) {
+			workSchedule[day][x] = 1;
+		}
+	}
+	
+	public void setSchedule(int[][] workSchedule) {
+		for(int day = 0;7>day;day++) {
+			for(int hour = 0;24>hour;hour++ ) {
+				this.workSchedule[day][hour] = workSchedule[day][hour];
+			}
+		}
+	}
+	
+	public int[][] getSchedule(){
+		return workSchedule;
+	}
+	
+	public void readBinFile(RandomAccessFile raf)throws IOException{
+		  
+		        
+		for(int day = 0;7>day;day++) {
+			for(int hour = 0;24>hour;hour++ ) {
+				workSchedule[day][hour] = raf.readInt();
+			}
+		}
+		    
+		
+	}
+	
+	public void writeBinFile(RandomAccessFile raf)throws IOException{
+
+		
+		for(int day = 0;7>day;day++) {
+			for(int hour = 0;24>hour;hour++ ) {
+				raf.writeInt(workSchedule[day][hour]);
+			}
+		}
+		
+		
+	}
+	
+	public void printData() {
+		for(int day = 0;7>day;day++) {
+			for(int hour = 0;24>hour;hour++ ) {
+				System.out.print(workSchedule[day][hour]);
+			}
+			System.out.println();
+		}
+	}
 }
