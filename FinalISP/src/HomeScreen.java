@@ -42,11 +42,10 @@ public class HomeScreen extends JFrame implements ActionListener {
 		menubut.setBackground(Color.gray);
 		Title.setIcon(new ImageIcon("./Images/screens/b1.jpg"));
 		
-		System.out.println(Menu.department.inventory.get(0).getImageLocation());
 		
 		//stuff for PrtA button
 		PrtA.setContentAreaFilled(false);
-		PrtA.setIcon(new ImageIcon(Menu.department.inventory.get(0).getImageLocation()));
+		PrtA.setIcon(new ImageIcon("./Images/screens/b1.jpg"));
 		menubut.add(PrtA);
 		
 		

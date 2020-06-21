@@ -1,10 +1,7 @@
-import java.awt.image.BufferedImage;
-import java.io.File;
+
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.util.LinkedList;
 
-import javax.imageio.ImageIO;
 
 public class Employee {
 	

@@ -24,17 +24,17 @@ public class Menu {
 		
 		run();
 //		orders.setRaf(raf);
-//		orders.addItem(null,"Cake",22,5,"");
-//		orders.addItem(null,"Ice Cream",3,1,"");
-//		orders.addItem(null,"Donuts",10,2,"");
-//		orders.addItem(null,"Hotdog",11,7,"");
+//		orders.addItem("Cake",22,5,"");
+//		orders.addItem("Ice Cream",3,1,"");
+//		orders.addItem("Donuts",10,2,"");
+//		orders.addItem("Hotdog",11,7,"");
 //		
 //
 //		setRaf(2);
 //		
-//		inventory.addItem(null, "Flour", 40, 20, 10, "Kg", "df");
-//		inventory.addItem(null, "Water", 20, 5, 10, "L", "ds");
-//		inventory.addItem(null, "Butter", 40, 20, 10, "Kg", "ds");
+//		inventory.addItem( "Flour", 40, 20, 10, "Kg", "df");
+//		inventory.addItem( "Water", 20, 5, 10, "L", "ds");
+//		inventory.addItem( "Butter", 40, 20, 10, "Kg", "ds");
 //		
 		
 
