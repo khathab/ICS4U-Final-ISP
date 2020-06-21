@@ -15,6 +15,7 @@ public class Product {
 	private int length = 96;
 	private int maxStringLength = 20;
 	private String imagelocation;
+	private boolean update;
 	public Product() {
 		
 	}
@@ -37,6 +38,7 @@ public class Product {
 
 	public void setName(String name) {
 		this.name = name;
+		update = true;
 	}
 
 	public String getLocation() {
@@ -54,6 +56,7 @@ public class Product {
 	
 	public void setLocation(String location) {
 		this.location = location;
+		update = true;
 	}
 	
 	public double getQuantity() {
@@ -63,6 +66,7 @@ public class Product {
 
 	public void setQuantity(double quantity) {
 		this.quantity = quantity;
+		update = true;
 	}
 
 	public double getPrice() {
@@ -71,7 +75,17 @@ public class Product {
 	
 	public void setPrice(double price) {
 		this.price = price;
+		update = true;
 	}
+	
+	public void setUpdate(boolean update) {
+		this.update = update;
+		
+	}
+	public boolean getUpdate() {
+		return update;
+	}
+	
 	public void printData() {
 	
 		System.out.println("Name: " + name);

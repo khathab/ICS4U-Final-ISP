@@ -19,12 +19,20 @@ public class Menu {
 	public static Department department = new Department();
 	
 	public static void main(String[] args) throws IOException {
-		
-		raf = new RandomAccessFile(binDepartment,"rw");
-		
+		run();
+//		raf = new RandomAccessFile(binDepartment,"rw");
+//		setRaf(3);
+//		
 //		department.addItem("Khathab", 17.5, 20, "Manager", 100, 0, 23, "Khathab");
 //		department.addItem("Adnan", 11.5, 20, "Worker", 0, 0, 15, "Adnan");
 //		
+//		department.inventory.get(0).setName("Jacob");
+//	
+//		
+//		department.update();
+
+//		
+		
 //		department.inventory.get(0).getSchedule().addShift(2, 3, 17);
 //		department.inventory.get(0).getSchedule().addShift(4, 6, 15);
 //		
@@ -33,13 +41,14 @@ public class Menu {
 
 //		run();
 		
-		
-//		orders.setRaf(raf);
-//		
+//		setRaf(1);		
 //		orders.addItem("Cake",22,5,"");
 //		orders.addItem("Ice Cream",3,1,"");
 //		orders.addItem("Donuts",10,2,"");
 //		orders.addItem("Hotdog",11,7,"");
+//		
+//		orders.inventory.get(0).setName("Ass");
+//		orders.update();
 //		
 //
 //		setRaf(2);

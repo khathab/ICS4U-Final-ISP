@@ -69,7 +69,7 @@ public LinkedList<Employee> inventory = new LinkedList<Employee>();;
 	}
 	
 	public void writeBinFile(int x)throws IOException{
-		inventory.getLast().writeBinFile(raf, x);
+		inventory.get(x).writeBinFile(raf, x);
 	}
 	
 	public void readBinFile(RandomAccessFile rafs)throws IOException{
@@ -80,7 +80,17 @@ public LinkedList<Employee> inventory = new LinkedList<Employee>();;
 		}
 	}	
 	
-	
+	public void update() throws IOException {
+		if(raf!=null) {
+			for(int x = 0 ; inventory.size()>x ; x++) {
+				if(inventory.get(x).getUpdate()==true) {
+					writeBinFile(x);
+					inventory.get(x).setUpdate(false);
+				}
+			}
+		}
+		
+	}
 	public void deleteAll() throws IOException {
 		inventory.clear();
 		emptyBinFile();

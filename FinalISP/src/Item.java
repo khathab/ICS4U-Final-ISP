@@ -14,7 +14,7 @@ public class Item {
 	private double price;
 	private double lowCap;
 	private String imagelocation;
-	
+	private boolean update;
 	private int length = 144;
 	private int maxStringLength = 20;
 	public Item() {
@@ -40,6 +40,7 @@ public class Item {
 
 	public void setName(String name) {
 		this.name = name;
+		update = true;
 	}
 	
 	public String getLocation() {
@@ -49,6 +50,7 @@ public class Item {
 
 	public void setLocation(String location) {
 		this.location = location;
+		update = true;
 	}
 	
 	public double getQuantity() {
@@ -58,6 +60,7 @@ public class Item {
 
 	public void setQuantity(double quantity) {
 		this.quantity = quantity;
+		update = true;
 	}
 
 	public double getPrice() {
@@ -67,6 +70,7 @@ public class Item {
 
 	public void setPrice(double price) {
 		this.price = price;
+		update = true;
 	}
 
 	public double getLowCap() {
@@ -76,6 +80,7 @@ public class Item {
 
 	public void setLowCap(double lowCap) {
 		this.lowCap = lowCap;
+		update = true;
 	}
 
 	public String getQuanitityType() {
@@ -85,6 +90,7 @@ public class Item {
 
 	public void setQuanitityType(String quantityType) {
 		this.quantityType = quantityType;
+		update = true;
 	}
 	
 	public String getImageLocation() {
@@ -94,6 +100,14 @@ public class Item {
 
 	public void setImageLocation(String imagelocation) {
 		this.imagelocation = imagelocation;
+	}
+	
+	public void setUpdate(boolean update) {
+		this.update = update;
+		
+	}
+	public boolean getUpdate() {
+		return update;
 	}
 	
 	public void printData() {

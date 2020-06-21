@@ -21,6 +21,7 @@ public class Employee {
 	private int maxStringLength = 20;
 	private String imagelocation;
 	private RandomAccessFile raf = null;
+	private boolean update;
 	public Employee() {
 		
 	}
@@ -56,8 +57,6 @@ public class Employee {
 		binSchedule = new File(schedulelocation);
 		
  }
-	
-	
 	
 	public void printData() {
 		
@@ -193,6 +192,7 @@ public class Employee {
 	}
 	public void setOvertimePay(double overtimePay) {
 		this.overtimePay = overtimePay;
+		update = true;
 	}
 	
 	public double getPayForTheWeek() {
@@ -200,42 +200,49 @@ public class Employee {
 	}
 	public void setPayForTheWeek(double payForTheWeek) {
 			this.payForTheWeek = payForTheWeek;
+			update = true;
 	}
 	public double getHoursWorked() {
 		return hoursWorked;
 	}
 	public void setHoursWorked(double hoursWorked) {
 		this.hoursWorked = hoursWorked;
+		update = true;
 	}
 	public String getName() {
 				return name;
 			}
 	public void setName(String name) {
 				this.name = name;
+				update = true;
 	}
 	public double getPay() {
 				return pay;
 	}
 	public void setPay(double pay) {
 				this.pay = pay;
+				update = true;
 	}
 	public schedule getSchedule() {
 				return schedule;
 	}
 	public void setSchedule(schedule schedule) {
 				this.schedule = schedule;
+				update = true;
 	}
 	public double getOvertimeHours() {
 				return overtimeHours;
 	}
 	public void setOvertimeHours(double overtimeHours) {
 				this.overtimeHours = overtimeHours;
+				update = true;
 	}
 	public String getEmployeeType() {
 				return employeeType;
 	}
 	public void setEmployeeType(String employeeType) {
 				this.employeeType = employeeType;
+				update = true;
 	}
 	
 	public String getLocation() {
@@ -245,6 +252,7 @@ public class Employee {
 
 	public void setLocation(String location) {
 		this.location = location;
+		update = true;
 	}
 	
 	
@@ -255,6 +263,15 @@ public class Employee {
 
 	public void setImageLocation(String imagelocation) {
 		this.imagelocation = imagelocation;
+		
+	}
+	
+	public void setUpdate(boolean update) {
+		this.update = update;
+		
+	}
+	public boolean getUpdate() {
+		return update;
 	}
 			
 }
