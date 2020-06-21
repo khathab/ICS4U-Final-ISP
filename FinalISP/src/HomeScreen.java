@@ -40,7 +40,7 @@ public class HomeScreen extends JFrame implements ActionListener {
 		Title.setLayout(new GridLayout());
 		homeIMG.setBackground(Color.red);
 		menubut.setBackground(Color.gray);
-		Title.setIcon(new ImageIcon("./Images/screens/b1.jpg"));
+		Title.setIcon(new ImageIcon("./Images/screens/Title.jpg"));
 		
 		
 		//stuff for PrtA button
