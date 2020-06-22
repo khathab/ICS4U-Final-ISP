@@ -6,8 +6,7 @@ import java.io.RandomAccessFile;
 
 public class Employee {
 	
-	private String schedulelocation;
-	private File binSchedule ; 
+
 	private String name;
 	private double pay;
 	private double payForTheWeek;
@@ -17,7 +16,7 @@ public class Employee {
 	private double hoursWorked;
 	private double overtimePay;
 	private String location;
-	private int length = 160;
+	private int length = 328;
 	private int maxStringLength = 20;
 	private String imagelocation;
 	private RandomAccessFile raf = null;
@@ -37,8 +36,7 @@ public class Employee {
 			this.overtimePay=overtimePay;
 			this.location = location;
 			imagelocation = "./Images/employees/"+location+".jpg";
-			schedulelocation = "./schedules/"+location;
-			binSchedule = new File(schedulelocation);
+
 			
 	 }
 	public Employee(String name,double pay,double overtimeHours,String employeeType,double hoursWorked,double payForTheWeek,double overtimePay,String location,schedule schedule) {
@@ -53,8 +51,7 @@ public class Employee {
 		this.overtimePay=overtimePay;
 		this.location = location;
 		imagelocation = "./Images/employees/"+location+".jpg";
-		schedulelocation = "./schedules/"+location;
-		binSchedule = new File(schedulelocation);
+
 		
  }
 	
@@ -68,7 +65,6 @@ public class Employee {
 		System.out.println("Overtime Pay: "+overtimePay);
 		System.out.println("Overtime Hours: "+overtimeHours);
 		System.out.println("Image location: "+imagelocation);
-		System.out.println("Schedule location: "+schedulelocation);
 		System.out.println("Schedule: ");
 		schedule.printData();
 		System.out.println();
@@ -97,21 +93,19 @@ public class Employee {
 		overtimeHours = raf.readDouble();
 		hoursWorked = raf.readDouble();
 		overtimePay = raf.readDouble();
-		imagelocation = "./Images/employees/"+location+".jpg";
-		schedulelocation = "./schedules/"+location;
-		binSchedule = new File(schedulelocation);
 		
-	  	raf.close();
-
-    	raf = new RandomAccessFile(binSchedule,"rw");
 		schedule.readBinFile(raf);
-		raf = Menu.setRaf(3);
+		
+		imagelocation = "./Images/employees/"+location+".jpg";
+
+		
+		
+	  
+		
 	
 	}
 	
 	public void writeBinFile(RandomAccessFile raf, int rec)throws IOException{
-	
-	//	raf = rafs;
 		
 		
 		raf.seek (rec * length);
@@ -165,11 +159,7 @@ public class Employee {
 		        raf.writeDouble (hoursWorked);
 		    	raf.writeDouble (overtimePay);
 		    	
-		    	raf.close();
-
-		    	raf = new RandomAccessFile(binSchedule,"rw");
-				schedule.writeBinFile(raf);
-				raf = Menu.setRaf(3);
+		    	schedule.writeBinFile(raf);
 
 	}
 	
@@ -273,5 +263,7 @@ public class Employee {
 	public boolean getUpdate() {
 		return update;
 	}
+	
+	
 			
 }

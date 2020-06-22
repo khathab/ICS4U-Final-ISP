@@ -29,7 +29,7 @@ public class Product {
 		imagelocation = "./Images/products/"+location+".jpg";
 	}
 	
-	
+
 	
 	public String getName() {
 		return this.name;
@@ -41,6 +41,7 @@ public class Product {
 		update = true;
 	}
 
+	
 	public String getLocation() {
 		return this.location;
 	}

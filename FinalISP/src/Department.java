@@ -1,4 +1,5 @@
 
+import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.LinkedList;
@@ -51,6 +52,7 @@ public LinkedList<Employee> inventory = new LinkedList<Employee>();;
 	public void emptyBinFile() throws IOException {
 		raf = Menu.setRafBin(3);
 		
+		
 	}
 	
 	public void writeBinFile(RandomAccessFile rafs)throws IOException{
@@ -74,7 +76,7 @@ public LinkedList<Employee> inventory = new LinkedList<Employee>();;
 	
 	public void readBinFile(RandomAccessFile rafs)throws IOException{
 		raf = rafs;
-		for(int x =inventory.size(); raf.length()/160>x ; x++) {
+		for(int x =inventory.size(); raf.length()/328>x ; x++) {
 			inventory.add(new Employee());
 			inventory.getLast().readBinFile(raf, x);
 		}
@@ -83,10 +85,11 @@ public LinkedList<Employee> inventory = new LinkedList<Employee>();;
 	public void update() throws IOException {
 		if(raf!=null) {
 			for(int x = 0 ; inventory.size()>x ; x++) {
-				if(inventory.get(x).getUpdate()==true) {
+				if(inventory.get(x).getUpdate()==true||inventory.get(x).getSchedule().getUpdate()==true) {
 					writeBinFile(x);
 					inventory.get(x).setUpdate(false);
-				}
+					inventory.get(x).getSchedule().setUpdate(false);
+					}
 			}
 		}
 		
