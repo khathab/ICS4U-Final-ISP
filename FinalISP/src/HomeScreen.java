@@ -44,25 +44,24 @@ public class HomeScreen extends JFrame implements ActionListener {
 		
 		
 		//stuff for PrtA button
+		PrtA.addActionListener(this);
 		PrtA.setContentAreaFilled(false);
 		PrtA.setIcon(new ImageIcon("./Images/screens/b1.jpg"));
 		menubut.add(PrtA);
 		
 		
 		//stuff for PrtC button
+		PrtC.addActionListener(this);
 		PrtC.setContentAreaFilled(false);
 		PrtC.setIcon(new ImageIcon("./Images/screens/b2.jpg"));
 		menubut.add(PrtC);
 	
 		
 		//stuff for PrtE button
+		PrtE.addActionListener(this);
 		PrtE.setContentAreaFilled(false);
 		PrtE.setIcon(new ImageIcon("./Images/screens/b3.jpg"));
 		menubut.add(PrtE);
-			
-		//stuff for PrtF button 
-		PrtE.addActionListener(this);
-		
 		
 		
 		//added to parts of frame
@@ -80,7 +79,7 @@ public class HomeScreen extends JFrame implements ActionListener {
 		case " MANAGE EMPLOYEES":
 			//for reverse section
 			GrafEmp fram2 = new GrafEmp();
-			fram2.setSize(500, 300);
+			fram2.setSize(1200, 600);
 			fram2.setResizable(false);
 			fram2.setLocationRelativeTo(null);
 			fram2.addWindowListener(new WindowAdapter()
@@ -96,7 +95,7 @@ public class HomeScreen extends JFrame implements ActionListener {
 		case " MANAGE INVENTORY":
 			//for fractal section
 			GrafInv fram3 = new GrafInv();
-				fram3.setSize(729, 729);
+				fram3.setSize(500, 500);
 				fram3.setResizable(false);
 				fram3.setLocationRelativeTo(null);
 				fram3.addWindowListener(new WindowAdapter()
@@ -114,7 +113,7 @@ public class HomeScreen extends JFrame implements ActionListener {
 		case " MANAGE ORDERS":
 			//for blob section
 			GrafOrd fram4 = new GrafOrd();
-			fram4.setSize(300, 200);
+			fram4.setSize(500, 500);
 			fram4.setResizable(false);
 			fram4.setLocationRelativeTo(null);
 			fram4.addWindowListener(new WindowAdapter()

@@ -87,13 +87,10 @@ public class Product {
 		return update;
 	}
 	
-	public void printData() {
-	
-		System.out.println("Name: " + name);
-		System.out.println("Quantity: "+ quantity);
-		System.out.println("Price: "+price);
-		System.out.println("Location: "+location);
-		System.out.println();
+	public String printData() {
+		
+
+		return "Name: " + name + "\n" + "Quantity: " + quantity + "\n" + "Price: " +price + "\n" + "Location: " + location;
 		
 	}
 	

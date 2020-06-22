@@ -109,4 +109,12 @@ public class Inventory {
 		return raf;
 	}
 	
+//	public int size() {
+//		// TODO Auto-generated method stub
+//		return inventory.size();
+//	}
+
+
+
+	
 }

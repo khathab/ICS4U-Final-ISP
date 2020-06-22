@@ -110,15 +110,8 @@ public class Item {
 		return update;
 	}
 	
-	public void printData() {
-		
-		System.out.println("Name: " + name);
-		System.out.println("Location: "+location);
-		System.out.println("Quantity: "+ quantity);
-		System.out.println("Quantity Type: "+ quantityType);
-		System.out.println("Price: "+price);
-		System.out.println("Low Cap: "+ lowCap);
-		System.out.println();
+	public String printData() {
+		return "Name: " + name + "\n" +"Location: "+location + "\n" + "Quantity: "+ quantity + "\n" + "Quantity Type: "+ quantityType + "\n" +"Price: "+ price + "\n" + "Low Cap: " + lowCap;
 		
 	}
 	

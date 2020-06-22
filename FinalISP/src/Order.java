@@ -9,7 +9,7 @@ import java.util.LinkedList;
 
 public class Order {
 
-	public LinkedList<Product> inventory = new LinkedList<Product>();
+	public LinkedList<Product> orders = new LinkedList<Product>();
 	
 	private String name;
 	private String address;
@@ -35,29 +35,29 @@ public class Order {
 	}
 			
 	public void addItem(String name,double quantity,double price,String location) throws IOException {
-		inventory.add(new Product(name,quantity,price, location));
+		orders.add(new Product(name,quantity,price, location));
 		if(raf!=null) {
 			
-			writeBinFileProduct(inventory.size()-1);
+			writeBinFileProduct(orders.size()-1);
 		}
 	}
 	
 	public void addItem() throws IOException {
-		inventory.add(new Product());
+		orders.add(new Product());
 		if(raf!=null) {
-			writeBinFileProduct(inventory.size()-1);
+			writeBinFileProduct(orders.size()-1);
 		}
 	}
 	
 	public void removeItem(Product item) throws IOException{
-		inventory.remove(item);
+		orders.remove(item);
 			emptyBinFile();
 			writeBinFileProduct();
 
 	}
 	
 	public void removeItem(int item) throws IOException{
-		inventory.remove(item);
+		orders.remove(item);
 			emptyBinFile();
 			writeBinFileProduct();
 
@@ -78,8 +78,8 @@ public class Order {
 		Menu.closeRaf();
 
 		raf = new RandomAccessFile(fileLocation,"rw");
-		for(int x = 0 ; inventory.size()>x ; x++) {
-			inventory.get(x).writeBinFile(raf, x);
+		for(int x = 0 ; orders.size()>x ; x++) {
+			orders.get(x).writeBinFile(raf, x);
 			
 		}
 		raf.close();
@@ -90,7 +90,7 @@ public class Order {
 		Menu.closeRaf();
 
 		raf = new RandomAccessFile(fileLocation,"rw");
-		inventory.get(x).writeBinFile(raf, x);
+		orders.get(x).writeBinFile(raf, x);
 		raf.close();
 		Menu.setRaf(1);
 	}
@@ -145,9 +145,9 @@ public class Order {
 	public void readBinFileProduct(RandomAccessFile raf)throws IOException{
 		this.raf = raf;
     	
-    	for(int x =inventory.size(); (raf.length()/96)>x ; x++) {
-			inventory.add(new Product());
-			inventory.getLast().readBinFile(raf, x);
+    	for(int x =orders.size(); (raf.length()/96)>x ; x++) {
+			orders.add(new Product());
+			orders.getLast().readBinFile(raf, x);
 		}
 
 	}	
@@ -155,9 +155,9 @@ public class Order {
 	public void readBinFileProduct()throws IOException{
 		Menu.closeRaf();
 		raf = new RandomAccessFile(fileLocation,"rw");
-    	for(int x =inventory.size(); (raf.length()/96)>x ; x++) {
-			inventory.add(new Product());
-			inventory.getLast().readBinFile(raf, x);
+    	for(int x =orders.size(); (raf.length()/96)>x ; x++) {
+			orders.add(new Product());
+			orders.getLast().readBinFile(raf, x);
 		}
     	raf.close();
     	
@@ -189,10 +189,10 @@ public class Order {
 	}	
 	public void update() throws IOException {
 		if(raf!=null) {
-			for(int x = 0 ; inventory.size()>x ; x++) {
-				if(inventory.get(x).getUpdate()==true) {
+			for(int x = 0 ; orders.size()>x ; x++) {
+				if(orders.get(x).getUpdate()==true) {
 					writeBinFileProduct(x);
-					inventory.get(x).setUpdate(false);
+					orders.get(x).setUpdate(false);
 				}
 			}
 		}
@@ -200,14 +200,14 @@ public class Order {
 	}
 	
 	public double calculatTotal() {
-		for(int x = 0 ; inventory.size()>x ; x++) {
-			total+= inventory.get(x).getPrice();
+		for(int x = 0 ; orders.size()>x ; x++) {
+			total+= orders.get(x).getPrice();
 		}
 		return total;
 	}
 	
 	public void deleteAll() throws IOException {
-	inventory.clear();
+	orders.clear();
 	emptyBinFile();
 	}
 	
@@ -217,9 +217,9 @@ public class Order {
 		System.out.println("Total: "+total);
 		System.out.println();
 		
-		for(int x = 0 ; inventory.size()>x ; x++) {
+		for(int x = 0 ; orders.size()>x ; x++) {
 			System.out.println("Product #"+(x+1));
-			inventory.get(x).printData();
+			orders.get(x).printData();
 		}
 	}
 	
@@ -276,5 +276,7 @@ public class Order {
 	public boolean getUpdate() {
 		return update;
 	}
+	
+
 	
 }

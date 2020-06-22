@@ -5,7 +5,7 @@ import java.io.RandomAccessFile;
 import java.util.LinkedList;
 
 public class Department {
-public LinkedList<Employee> inventory = new LinkedList<Employee>();;
+public LinkedList<Employee> department = new LinkedList<Employee>();;
 	
 	public RandomAccessFile raf = null;
 
@@ -14,26 +14,26 @@ public LinkedList<Employee> inventory = new LinkedList<Employee>();;
 	}
 	
 	public void addItem(String name,double pay,double overtimeHours,String employeeType,double hoursWorked,double payForTheWeek,double overtimePay,String location,schedule schedule) throws IOException {
-		inventory.add(new Employee(name,pay,overtimeHours,employeeType,hoursWorked,payForTheWeek,overtimePay, location,schedule));
+		department.add(new Employee(name,pay,overtimeHours,employeeType,hoursWorked,payForTheWeek,overtimePay, location,schedule));
 		if(raf!=null) {
-			writeBinFile(inventory.size()-1);
+			writeBinFile(department.size()-1);
 		}
 	}
 	public void addItem(String name,double pay,double overtimeHours,String employeeType,double hoursWorked,double payForTheWeek,double overtimePay,String location) throws IOException {
-		inventory.add(new Employee(name,pay,overtimeHours,employeeType,hoursWorked,payForTheWeek,overtimePay, location));
+		department.add(new Employee(name,pay,overtimeHours,employeeType,hoursWorked,payForTheWeek,overtimePay, location));
 		if(raf!=null) {
-			writeBinFile(inventory.size()-1);
+			writeBinFile(department.size()-1);
 		}
 	}
 	public void addItem() throws IOException {
-		inventory.add(new Employee());
+		department.add(new Employee());
 		if(raf!=null) {
-			writeBinFile(inventory.size()-1);
+			writeBinFile(department.size()-1);
 		}
 	}
 	
 	public void removeItem(Employee employee) throws IOException{
-		inventory.remove(employee);
+		department.remove(employee);
 		if(raf!=null) {
 			emptyBinFile();
 			writeBinFile();
@@ -42,7 +42,7 @@ public LinkedList<Employee> inventory = new LinkedList<Employee>();;
 	
 
 	public void removeItem(int employee) throws IOException{
-		inventory.remove(employee);
+		department.remove(employee);
 		if(raf!=null) {
 			emptyBinFile();
 			writeBinFile();
@@ -57,53 +57,53 @@ public LinkedList<Employee> inventory = new LinkedList<Employee>();;
 	
 	public void writeBinFile(RandomAccessFile rafs)throws IOException{
 		raf = rafs;
-		for(int x = 0 ; inventory.size()>x ; x++) {
-			inventory.get(x).writeBinFile(raf, x);
+		for(int x = 0 ; department.size()>x ; x++) {
+			department.get(x).writeBinFile(raf, x);
 			
 		}
 	}
 	
 	public void writeBinFile()throws IOException{
 
-		for(int x = 0 ; inventory.size()>x ; x++) {
-			inventory.get(x).writeBinFile(raf, x);
+		for(int x = 0 ; department.size()>x ; x++) {
+			department.get(x).writeBinFile(raf, x);
 		}
 	}
 	
 	public void writeBinFile(int x)throws IOException{
-		inventory.get(x).writeBinFile(raf, x);
+		department.get(x).writeBinFile(raf, x);
 	}
 	
 	public void readBinFile(RandomAccessFile rafs)throws IOException{
 		raf = rafs;
-		for(int x =inventory.size(); raf.length()/328>x ; x++) {
-			inventory.add(new Employee());
-			inventory.getLast().readBinFile(raf, x);
+		for(int x =department.size(); raf.length()/328>x ; x++) {
+			department.add(new Employee());
+			department.getLast().readBinFile(raf, x);
 		}
 	}	
 	
 	public void update() throws IOException {
 		if(raf!=null) {
-			for(int x = 0 ; inventory.size()>x ; x++) {
-				if(inventory.get(x).getUpdate()==true||inventory.get(x).getSchedule().getUpdate()==true) {
+			for(int x = 0 ; department.size()>x ; x++) {
+				if(department.get(x).getUpdate()==true||department.get(x).getSchedule().getUpdate()==true) {
 					writeBinFile(x);
-					inventory.get(x).setUpdate(false);
-					inventory.get(x).getSchedule().setUpdate(false);
+					department.get(x).setUpdate(false);
+					department.get(x).getSchedule().setUpdate(false);
 					}
 			}
 		}
 		
 	}
 	public void deleteAll() throws IOException {
-		inventory.clear();
+		department.clear();
 		emptyBinFile();
 		}
 	
 	public void printList() {
 
-		for(int x = 0 ; inventory.size()>x ; x++) {
+		for(int x = 0 ; department.size()>x ; x++) {
 			System.out.println("Item #"+(x+1));
-			inventory.get(x).printData();
+			department.get(x).printData();
 		}
 	}
 	
@@ -114,4 +114,8 @@ public LinkedList<Employee> inventory = new LinkedList<Employee>();;
 	public RandomAccessFile getRaf() {
 		return raf;
 	}
+	
+
+
+
 }

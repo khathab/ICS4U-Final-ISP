@@ -3,7 +3,7 @@ import java.awt.event.WindowEvent;			//for graphics
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.util.Scanner;
+
 
 public class Menu {
 

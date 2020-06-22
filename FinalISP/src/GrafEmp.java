@@ -21,7 +21,7 @@ import javax.swing.JTextArea;
 public class GrafEmp extends JFrame implements ActionListener, ItemListener {
 	
 	JPanel Card;
-	int inv = Menu.department.size();
+	int inv = Menu.department.department.size();
 	
 	public GrafEmp() {
 		super("Employee Management");
@@ -50,7 +50,7 @@ public class GrafEmp extends JFrame implements ActionListener, ItemListener {
         card1.setLayout(new FlowLayout());
         System.out.println(inv);
         for (int x = 0; x < inv; x++) {
-        	Inv[x] = new JTextArea("Employee Number: " + x + "\n" + Menu.department.get(x).printData());
+        	Inv[x] = new JTextArea("Employee Number: " + x + "\n" + Menu.department.department.get(x).printData());
         	card1.add(Inv[x]);
         }
         

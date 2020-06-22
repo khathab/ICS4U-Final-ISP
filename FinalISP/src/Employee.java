@@ -55,21 +55,12 @@ public class Employee {
 		
  }
 	
-	public void printData() {
+   public String printData() {
 		
-		System.out.println("Name: " + name);
-		System.out.println("Position: " + employeeType);
-		System.out.println("Pay: "+ pay);
-		System.out.println("Hours: "+hoursWorked);
-		System.out.println("PayForTheWeek: "+payForTheWeek);
-		System.out.println("Overtime Pay: "+overtimePay);
-		System.out.println("Overtime Hours: "+overtimeHours);
-		System.out.println("Image location: "+imagelocation);
-		System.out.println("Schedule: ");
-		schedule.printData();
-		System.out.println();
+		return "Name: " + name + "\n" + "Position: " + employeeType  + "\n" +"Pay: "+ pay  + "\n" +"Hours: "+hoursWorked + "\n" +"PayForTheWeek: "+payForTheWeek  + "\n" +"Overtime Pay: "+overtimePay + "\n" +"Overtime Hours: "+overtimeHours + "\n" +"Image location: "+imagelocation  + "\n" +"Schedule: " ;
 		
 	}
+	
 	
 	public void readBinFile(RandomAccessFile rafs, int rec)throws IOException{
 		raf = rafs;

@@ -12,7 +12,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 
-import hsa2.*;				//for graphics
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -30,7 +29,7 @@ import javax.swing.SwingConstants;
 public class GrafInv extends JFrame implements ItemListener, ActionListener {
 
 	JPanel Card;
-	int inv = Menu.inventory.size();
+	int inv = Menu.inventory.inventory.size();
 	
 	public GrafInv() {
 		super("Inventory Management");
@@ -59,7 +58,7 @@ public class GrafInv extends JFrame implements ItemListener, ActionListener {
         card1.setLayout(new FlowLayout());
         System.out.println(inv);
         for (int x = 0; x < inv; x++) {
-        	Inv[x] = new JTextArea("Item Number: " + x + "\n" + Menu.inventory.get(x).printData());
+        	Inv[x] = new JTextArea("Item Number: " + x + "\n" + Menu.inventory.inventory.get(x).printData());
         	card1.add(Inv[x]);
         }
         
